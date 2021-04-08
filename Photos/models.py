@@ -9,3 +9,17 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Photo(models.Model):
+    name = models.CharField("Cím", max_length=100)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="photos")
+    description = models.TextField()
+    uploaded = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = "Fotók"
+
+    def __str__(self):
+        return self.name
