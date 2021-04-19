@@ -3,8 +3,11 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-<h1>Home Page</h1>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex aut adipisci odio itaque. Ipsa fugiat magni, sint, quia
-    impedit iure obcaecati fuga nam repellendus doloribus atque excepturi eum alias non.</p>
-<a href="">Google.com</a>
+<div class="image_grid">
+    {% for photo in photos %}
+    <a href="">
+        <img src="{{photo.image.url}}" alt="" class="image_thumbnail">
+    </a>
+    {% endfor %}
+</div>
 {% endblock content %}

@@ -1,4 +1,7 @@
 from django.db import models
+from django.db.models.signals import post_delete
+
+from pathlib import Path
 
 
 class Category(models.Model):
@@ -23,3 +26,10 @@ class Photo(models.Model):
 
     def __str__(self):
         return self.name
+
+
+def file_cleanup(sender, instance, **kwargs):
+    Path(instance.image.path).unlink()
+
+
+post_delete.connect(file_cleanup, sender=Photo)
